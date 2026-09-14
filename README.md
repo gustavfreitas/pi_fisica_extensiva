@@ -89,7 +89,7 @@ Parâmetros de entrada testados para validação analítica do sistema:
 ## 👥 Contribuintes e Integrantes do Grupo
 *   **Gustavo Freitas** - [#](https://github.com/gustavfreitas)
 *   **Pedro Canute** - [#](https://github.com/pedrocanute)
-*   **Miguel Akira** - [#](https://github.com/miguelhakira)
+*   **Miguel Hakira** - [#](https://github.com/miguelhakira)
 *   **Thiago Oliete** - [#](https://github.com/Thiago-Oliete)
 
 ---
