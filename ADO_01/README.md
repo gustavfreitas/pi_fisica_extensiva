@@ -8,7 +8,7 @@ Este projeto consiste em um software interativo com interface gráfica (GUI) que
 
 ## 📸 Demonstração da Interface
 
-![Interface do Simulador](src/prints/Animacao.gif)
+![Interface do Simulador](Animacao.gif)
 
 ---
 
