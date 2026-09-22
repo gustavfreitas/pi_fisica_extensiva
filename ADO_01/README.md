@@ -49,6 +49,20 @@ O software foi construído na linguagem **Python 3** e está estruturado em fun�
 
 ## ⚙️ Como Executar a Aplicação
 
+Você pode rodar este simulador de duas formas: baixando o aplicativo pronto para Windows ou executando o código-fonte em Python.
+
+### 🛠️ Opção 1: Baixar o Aplicativo Executável (Recomendado)
+Não requer nenhuma instalação do Python ou bibliotecas na sua máquina. Basta baixar o arquivo `.exe` compilado:
+
+* 📥 **[Baixar Simulador Interativo (.exe)](sha256:8f467a918208b93f40340246ec312c50319ae9dd4d6709141c14668483032a5c)**
+
+> ⚠️ **Nota de Persistência:** Toda vez que você fechar o aplicativo, as posições atuais dos seus sliders serão salvas automaticamente em um arquivo de configuração chamado `config_sliders.json` gerado na mesma pasta do executável. Ao abrir o programa novamente, ele lembrará exatamente onde você parou!
+
+---
+
+### 💻 Opção 2: Executar via Código-Fonte (Python)
+Se preferir rodar o script diretamente no terminal:
+
 1. Clone o repositório em seu ambiente local:
    ```bash
    git clone https://github.com/gustavfreitas/pi_fisica_extensiva
