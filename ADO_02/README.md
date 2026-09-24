@@ -39,11 +39,11 @@ O projeto foi refatorado e aprimorado em relação aos requisitos básicos, cont
    ```bash
    pip install numpy matplotlib reportlab
    ```
-1. Para iniciar a simulação interativa, execute:
+3. Para iniciar a simulação interativa, execute:
   ```bash
 python simulacao_fisica.py
   ```
-2. Para gerar o relatório em PDF atualizado na mesma pasta, execute:  
+4. Para gerar o relatório em PDF atualizado na mesma pasta, execute:  
   ```Bash
 python gerar_relatorio.py
   ```
