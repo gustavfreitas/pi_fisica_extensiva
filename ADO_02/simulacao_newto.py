@@ -10,7 +10,7 @@ class SimuladorFisica(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Simulação Interativa - Mecânica e Física Moderna")
-        self.geometry("900x600")
+        self.geometry("1200x720")
 
         # Layout: Controle (Esquerda) e Gráfico (Direita)
         painel_ctrl = ttk.Frame(self, padding=10)
@@ -58,13 +58,13 @@ class SimuladorFisica(tk.Tk):
 
         # Gera novos sliders dinamicamente usando listas
         if sis == "plano":
-            for p in [("m1", 0.5, 20, 5), ("m2", 0.5, 20, 7), ("ang", 0, 80, 30), ("mu_k", 0, 1, 0.2)]: 
+            for p in [("Massa_1", 0.5, 20, 5), ("Massa_2", 0.5, 20, 7), ("Angulo", 0, 80, 30), ("Movimento_Uniforme", 0, 1, 0.2)]: 
                 self.criar_slider(*p)
         elif sis == "mcu":
-            for p in [("R", 0.5, 10, 3), ("v", 1, 30, 10), ("m", 0.1, 10, 2)]: 
+            for p in [("Raio", 0.5, 10, 3), ("Velocidade", 1, 30, 10), ("Massa", 0.1, 10, 2)]: 
                 self.criar_slider(*p)
         elif sis == "arrasto":
-            for p in [("m", 0.1, 10, 2), ("coef", 0.01, 2, 0.3)]: 
+            for p in [("Massa", 0.1, 10, 2), ("Coeficiente", 0.01, 2, 0.3)]: 
                 self.criar_slider(*p)
             
             self.tipo_arrasto = tk.StringVar(value="linear")
@@ -82,35 +82,35 @@ class SimuladorFisica(tk.Tk):
         v = {k: s.get() for k, s in self.sliders.items()}
 
         if sis == "plano":
-            th = np.radians(v["ang"])
-            N = v["m1"] * G * np.cos(th)
-            F_motriz = v["m2"] * G - v["m1"] * G * np.sin(th)
+            th = np.radians(v["Angulo"])
+            N = v["Massa_1"] * G * np.cos(th)
+            F_motriz = v["Massa_2"] * G - v["Massa_1"] * G * np.sin(th)
             
             # Condição de movimento condensada em uma linha (operador ternário)
-            a = 0 if abs(F_motriz) <= v["mu_k"] * N else (F_motriz - v["mu_k"] * N * np.sign(F_motriz)) / (v["m1"] + v["m2"])
+            a = 0 if abs(F_motriz) <= v["Movimento_Uniforme"] * N else (F_motriz - v["Movimento_Uniforme"] * N * np.sign(F_motriz)) / (v["Massa_1"] + v["Massa_2"])
             
             t = np.linspace(0, 5, 100)
             self.ax.plot(t, 0.5 * a * t**2, 'b-', label='Posição [m]')
             self.ax.plot(t, a * t, 'r--', label='Velocidade [m/s]')
-            self.lbl_res.config(text=f"Aceleração: {a:.2f} m/s²\nTração: {v['m2']*(G-a):.2f} N")
+            self.lbl_res.config(text=f"Aceleração: {a:.2f} m/s²\nTração: {v['Massa_2']*(G-a):.2f} N")
 
         elif sis == "mcu":
-            w = v["v"] / v["R"]
+            w = v["Velocidade"] / v["Raio"]
             t = np.linspace(0, 2 * np.pi / w if w > 0 else 5, 200)
-            x, y = v["R"] * np.cos(w * t), v["R"] * np.sin(w * t)
+            x, y = v["Raio"] * np.cos(w * t), v["Raio"] * np.sin(w * t)
             
             self.ax.plot(x, y, 'g-')
             self.ax.scatter([x[0]], [y[0]], color='red', zorder=5) # Partícula
             self.ax.set_aspect('equal', 'box')
-            self.lbl_res.config(text=f"ω: {w:.2f} rad/s\nForça Centrípeta: {v['m']*(v['v']**2)/v['R']:.2f} N")
+            self.lbl_res.config(text=f"ω: {w:.2f} rad/s\nForça Centrípeta: {v['Massa']*(v['Velocidade']**2)/v['Raio']:.2f} N")
 
         elif sis == "arrasto":
             t = np.linspace(0, 10, 200)
             if self.tipo_arrasto.get() == "lin":
-                v_term = (v["m"] * G) / v["coef"]
-                vel = v_term * (1 - np.exp(-t / (v["m"] / v["coef"])))
+                v_term = (v["Massa"] * G) / v["Coeficiente"]
+                vel = v_term * (1 - np.exp(-t / (v["Massa"] / v["Coeficiente"])))
             else:
-                v_term = np.sqrt((v["m"] * G) / v["coef"])
+                v_term = np.sqrt((v["Massa"] * G) / v["Coeficiente"])
                 vel = v_term * np.tanh((G * t) / v_term)
 
             self.ax.plot(t, G * t, 'k--', label='Queda Livre')
