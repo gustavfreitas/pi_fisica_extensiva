@@ -6,7 +6,7 @@ O objetivo central deste portfólio é demonstrar a aplicação prática de conc
 
 ## 👨‍💻 Autor / Equipe
 **[Membros do Grupo]** - Estudantes de Ciência da Computação: 
-* Pedro Canute
+* "Pedro Cristiano Batista Canute
 * Gustavo Souza Freitas
 * Miguel Hakira Mendes Kato
 * Thiago Oliete Ogata Almeida
