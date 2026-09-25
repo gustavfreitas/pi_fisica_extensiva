@@ -30,7 +30,7 @@ O projeto foi refatorado e aprimorado em relação aos requisitos básicos, cont
 ## ⚙️ Instalação e Execução
 
 ### Opção 1: Através do Executável (Não requer Python)
-1. Faça o download do ficheiro `simulacao_fisica.exe`.
+1. 📥 Faça o download do ficheiro **[Simulador Interativo (.exe)](https://github.com/gustavfreitas/pi_fisica_extensiva/releases/download/v1.0.1/simulacao_newto.exe)**
 2. Clique duas vezes sobre o ficheiro para abrir a interface gráfica instantaneamente.
 
 ### Opção 2: Através do Código-Fonte (Requer Python)
