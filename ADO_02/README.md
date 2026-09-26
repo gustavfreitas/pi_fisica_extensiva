@@ -30,15 +30,16 @@ O projeto foi refatorado e aprimorado em relação aos requisitos básicos, cont
 ## ⚙️ Instalação e Execução
 
 ### Opção 1: Através do Executável (Não requer Python)
-1. 📥 Faça o download do ficheiro **[Simulador Interativo (.exe)](https://github.com/gustavfreitas/pi_fisica_extensiva/releases/download/v1.0.1/simulacao_newto.exe)**
-2. Clique duas vezes sobre o ficheiro para abrir a interface gráfica instantaneamente.
+1. 📥 Faça o download do arquivo executável: **[Simulador Interativo (.exe)](https://github.com/gustavfreitas/pi_fisica_extensiva/releases/download/v1.0.1/simulacao_newto.exe)**
+2. Clique duas vezes sobre o arquivo para abrir a interface gráfica instantaneamente.
 
 ### Opção 2: Através do Código-Fonte (Requer Python)
 1. Clone o repositório para a sua máquina local.
+
 2. Instale as dependências necessárias utilizando o gestor de pacotes `pip`:
-   ```bash
-   pip install numpy matplotlib reportlab
-   ```
+  ```bash
+  pip install numpy matplotlib reportlab
+  ```
 3. Para iniciar a simulação interativa, execute:
   ```bash
 python simulacao_fisica.py
