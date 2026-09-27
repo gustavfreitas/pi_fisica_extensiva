@@ -55,3 +55,14 @@ python gerar_relatorio.py
 * **Força Centrípeta (MCU):** Avaliação de velocidade angular (ω), força centrípeta e plotagem paramétrica do raio de curvatura.
 
 * **Força de Arrasto (Queda Vertical):** Comparação visual e analítica entre resistência linear (exponencial) e quadrática (tangente hiperbólica), evidenciando a saturação na velocidade terminal.
+
+---
+
+## 👥 Contribuintes e Integrantes do Grupo
+
+*   **Gustavo Freitas** - [#](https://github.com/gustavfreitas)
+*   **Pedro Canute** - [#](https://github.com/pedrocanute)
+*   **Miguel Hakira** - [#](https://github.com/miguelhakira)
+*   **Thiago Oliete** - [#](https://github.com/Thiago-Oliete)
+
+---
