@@ -60,9 +60,9 @@ python gerar_relatorio.py
 
 ## 👥 Contribuintes e Integrantes do Grupo
 
-*   **Gustavo Freitas** - [#](https://github.com/gustavfreitas)
-*   **Pedro Canute** - [#](https://github.com/pedrocanute)
-*   **Miguel Hakira** - [#](https://github.com/miguelhakira)
-*   **Thiago Oliete** - [#](https://github.com/Thiago-Oliete)
+*   ![**Gustavo Freitas**](https://github.com/gustavfreitas)
+*   ![**Pedro Canute**](https://github.com/pedrocanute)
+*   ![**Miguel Hakira**](https://github.com/miguelhakira)
+*   ![**Thiago Oliete**](https://github.com/Thiago-Oliete)
 
 ---
