@@ -15,7 +15,8 @@ O objetivo central deste portfólio é demonstrar a aplicação prática de conc
 ## 🛠️ Tecnologias e Ferramentas
 * **Linguagem:** Python 3
 * **Bibliotecas Científicas:** NumPy, Matplotlib
-* **Interfaces Gráficas (GUI):** Matplotlib.widgets (Sliders, Buttons), Tkinter
+* **Interfaces Gráficas (GUI):** Matplotlib.widgets (Sliders, Buttons, RadioButtons), Tkinter
+* **Relatórios Automatizados:** ReportLab (Geração de PDFs)
 * **Documentação:** Markdown, Jupyter Notebook
 
 ---
@@ -33,6 +34,11 @@ Ao longo do semestre, as seguintes simulações foram desenvolvidas. Clique nos 
 * **Descrição:** Modelagem do comportamento de sistemas físicos clássicos (como Plano Inclinado, Força Centrípeta e Força de Arrasto) utilizando fórmulas matemáticas fechadas.
 * **Conceitos Físicos:** Segunda Lei de Newton $(\Sigma\vec{F}=m\vec{a})$, força de atrito, tração, movimento circular uniforme e cinemática de forças não constantes.
 * **Destaque Técnico:** Demonstração visual da evolução da posição e velocidade no tempo sem o uso de laços de integração numérica, avaliando vetores de tempo com NumPy e construindo interfaces de seleção de cenários.
+
+### 💥 [ADO 03: Colisões e Conservação de Momento](./ADO_03/)
+- **Descrição:** Animação interativa 1D focada no Teorema do Impulso, Conservação de Momento Linear e Energia Cinética (Opção A - Colisões Elásticas).
+- **Conceitos Físicos:** Colisões elásticas, impulso ($J$), força média ($F_{\text{med}}$) e transferência de energia entre massas.
+- **Destaque Técnico:** Painel de telemetria atualizado em tempo real, gráficos de barras comparando o antes e depois, e suporte a múltiplos casos de teste regulados por sliders e botões interativos.
 
 ---
 
