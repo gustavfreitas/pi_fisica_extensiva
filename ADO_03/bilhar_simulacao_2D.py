@@ -1,4 +1,4 @@
-import numpy as np
+    import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.widgets import Slider, Button
@@ -131,6 +131,42 @@ for i in range(16):
     txt = ax.text(pos[i,0], pos[i,1], num, color=cor_texto, ha='center', va='center', fontsize=8, fontweight='bold', zorder=6)
     textos.append(txt)
 
-# Linhas visuais do Taco e da Mira
-linha_taco, = ax.plot([], [], color='#8b4513', lw=5, zorder=6, solid_capstyle='round') # Marrom
-linha_mira, = ax.plot([], [], color='white', lw=1, ls='--', zorder=4)
+    # Linhas visuais do Taco e da Mira
+    linha_taco, = ax.plot([], [], color='#8b4513', lw=5, zorder=6, solid_capstyle='round') # Marrom
+    linha_mira, = ax.plot([], [], color='white', lw=1, ls='--', zorder=4)
+
+btn_tacada.on_clicked(executar_tacada)
+
+def atualizar(frame):
+    # Se está esperando a tacada, não roda a física, apenas desenha o taco mirado
+    if estado_jogo == "ESPERANDO":
+        rad = np.radians(slider_ang.val)
+        forca = slider_forca.val
+        
+        # A ponta do taco fica encostada na bola, a base recua proporcional à força
+        distancia_taco = RAIO + 0.2
+        taco_x = [pos[0, 0] - np.cos(rad) * distancia_taco, pos[0, 0] - np.cos(rad) * (distancia_taco + forca/10)]
+        taco_y = [pos[0, 1] - np.sin(rad) * distancia_taco, pos[0, 1] - np.sin(rad) * (distancia_taco + forca/10)]
+        linha_taco.set_data(taco_x, taco_y)
+        
+        # Desenha a linha de mira (pra onde a bola branca vai)
+        mira_x = [pos[0, 0] + np.cos(rad) * RAIO, pos[0, 0] + np.cos(rad) * 10]
+        mira_y = [pos[0, 1] + np.sin(rad) * RAIO, pos[0, 1] + np.sin(rad) * 10]
+        linha_mira.set_data(mira_x, mira_y)
+        
+    elif estado_jogo == "ROLANDO":
+        resolver_colisoes()
+    
+    # Atualiza as posições gráficas de tudo
+    for i in range(16):
+        if ativa[i]:
+            bolas_graficas[i].center = pos[i]
+            textos[i].set_position(pos[i])
+        else:
+            bolas_graficas[i].center = (-10, -10)
+            textos[i].set_position((-10, -10))
+            
+    return bolas_graficas + textos + [linha_taco, linha_mira]
+
+anim = FuncAnimation(fig, atualizar, frames=400, interval=20, blit=True)
+plt.show()
