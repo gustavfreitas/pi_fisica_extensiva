@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.widgets import Slider, Button
 
-# 1. Configuração da Mesa, Bolas e Caçapas
+# =====================================================================
+# 1. CONFIGURAÇÃO DA MESA, CAÇAPAS E BOLAS
+# =====================================================================
 LARGURA_MESA, ALTURA_MESA = 10.0, 5.0
 RAIO = 0.2
 RAIO_CACAPA = 0.35
@@ -29,10 +31,12 @@ for linha in range(5):
         pos[idx] = [x, y]
         idx += 1
 
-# Variaveís de Controle do Jogo
+# --- VARIÁVEIS DE CONTROLE DO JOGO ---
 estado_jogo = "ESPERANDO" # Pode ser "ESPERANDO" ou "ROLANDO"
 
-# 2. Motor Físico 2D
+# =====================================================================
+# 2. MOTOR FÍSICO 2D
+# =====================================================================
 def resolver_colisoes():
     global pos, vel, ativa, estado_jogo
     
@@ -97,7 +101,9 @@ def resolver_colisoes():
                     vel[i] -= impulso
                     vel[j] += impulso
 
-# 3. Interface, Renderização, Controle
+# =====================================================================
+# 3. INTERFACE, RENDERIZAÇÃO E CONTROLE
+# =====================================================================
 fig, ax = plt.subplots(figsize=(10, 7))
 fig.canvas.manager.set_window_title("Jogo de Sinuca em Python")
 ax.set(xlim=(0, LARGURA_MESA), ylim=(0, ALTURA_MESA))
@@ -105,7 +111,7 @@ ax.set_aspect('equal')
 ax.set_facecolor('#0f5e1e')
 plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.25) # Abre espaço para os controles
 
-# Criação do Widget (Taco)
+# --- CRIAÇÃO DOS WIDGETS (Taco) ---
 ax_ang = plt.axes([0.1, 0.12, 0.65, 0.03], facecolor='lightgoldenrodyellow')
 ax_forca = plt.axes([0.1, 0.05, 0.65, 0.03], facecolor='lightgoldenrodyellow')
 ax_btn = plt.axes([0.8, 0.05, 0.15, 0.1])
@@ -114,7 +120,7 @@ slider_ang = Slider(ax_ang, 'Ângulo (°)', 0, 360, valinit=0, valstep=1)
 slider_forca = Slider(ax_forca, 'Força', 5, 40, valinit=20)
 btn_tacada = Button(ax_btn, 'Dar Tacada!', color='lightblue', hovercolor='0.975')
 
-# Desenho dos Elementos Gráficos -
+# --- DESENHO DOS ELEMENTOS GRÁFICOS ---
 for c in cacapas: ax.add_patch(plt.Circle(c, RAIO_CACAPA, color='black', zorder=2))
 
 cores = ['white', 'yellow', 'blue', 'red', 'purple', 'orange', 'green', 'maroon', 
@@ -131,9 +137,24 @@ for i in range(16):
     txt = ax.text(pos[i,0], pos[i,1], num, color=cor_texto, ha='center', va='center', fontsize=8, fontweight='bold', zorder=6)
     textos.append(txt)
 
-    # Linhas visuais do Taco e da Mira
-    linha_taco, = ax.plot([], [], color='#8b4513', lw=5, zorder=6, solid_capstyle='round') # Marrom
-    linha_mira, = ax.plot([], [], color='white', lw=1, ls='--', zorder=4)
+# Linhas visuais do Taco e da Mira
+linha_taco, = ax.plot([], [], color='#8b4513', lw=5, zorder=6, solid_capstyle='round') # Marrom
+linha_mira, = ax.plot([], [], color='white', lw=1, ls='--', zorder=4)
+
+# --- LÓGICA DE INTERAÇÃO DO JOGADOR ---
+def executar_tacada(event):
+    global estado_jogo
+    if estado_jogo == "ESPERANDO":
+        # Converte o ângulo polar em vetores Cartesianos X e Y
+        radianos = np.radians(slider_ang.val)
+        forca = slider_forca.val
+        
+        vel[0] = [forca * np.cos(radianos), forca * np.sin(radianos)]
+        estado_jogo = "ROLANDO"
+        
+        # Esconde o taco enquanto a bola rola
+        linha_taco.set_data([], [])
+        linha_mira.set_data([], [])
 
 btn_tacada.on_clicked(executar_tacada)
 
