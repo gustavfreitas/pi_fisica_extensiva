@@ -3,9 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.widgets import Slider, Button
 
-# =====================================================================
+
 # 1. CONFIGURAÇÃO DA MESA, CAÇAPAS E BOLAS
-# =====================================================================
 LARGURA_MESA, ALTURA_MESA = 10.0, 5.0
 RAIO = 0.2
 RAIO_CACAPA = 0.35
@@ -34,9 +33,8 @@ for linha in range(5):
 # --- VARIÁVEIS DE CONTROLE DO JOGO ---
 estado_jogo = "ESPERANDO" # Pode ser "ESPERANDO" ou "ROLANDO"
 
-# =====================================================================
+
 # 2. MOTOR FÍSICO 2D
-# =====================================================================
 def resolver_colisoes():
     global pos, vel, ativa, estado_jogo
     
@@ -101,9 +99,8 @@ def resolver_colisoes():
                     vel[i] -= impulso
                     vel[j] += impulso
 
-# =====================================================================
+
 # 3. INTERFACE, RENDERIZAÇÃO E CONTROLE
-# =====================================================================
 fig, ax = plt.subplots(figsize=(10, 7))
 fig.canvas.manager.set_window_title("Jogo de Sinuca em Python")
 ax.set(xlim=(0, LARGURA_MESA), ylim=(0, ALTURA_MESA))
