@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulações Físicas em Python</title>
+<meta name="description" content="Portfólio acadêmico de simulações físicas interativas em Python: ADO 01, ADO 02 e ADO 03.">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --bg-soft: #121829;
+    --card: #151c30;
+    --border: #243049;
+    --text: #e6eaf5;
+    --muted: #93a0bd;
+    --accent: #5b9dff;
+    --accent-2: #9b7bff;
+    --ok: #3ddc97;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(900px 500px at 10% -10%, rgba(91,157,255,.15), transparent 60%),
+      radial-gradient(800px 500px at 100% 0%, rgba(155,123,255,.13), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* Hero */
+  header.hero { padding: 72px 0 40px; text-align: center; }
+  .badge {
+    display: inline-block; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--border); background: var(--bg-soft);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin-bottom: 16px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { max-width: 720px; margin: 0 auto; color: var(--muted); font-size: 1.05rem; }
+  .hero .cta { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: .95rem;
+    border: 1px solid transparent; cursor: pointer; transition: transform .15s, background .15s, border-color .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #07101f; }
+  .btn-ghost { background: transparent; border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  /* Sections */
+  section { padding: 40px 0; }
+  h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .section-sub { color: var(--muted); margin-bottom: 28px; }
+
+  /* Cards */
+  .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 26px; display: flex; flex-direction: column; transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,.35); }
+  .card .tag { font-size: .78rem; font-weight: 700; letter-spacing: .08em; color: var(--accent); }
+  .card .icon { font-size: 2.2rem; margin: 6px 0 4px; }
+  .card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+  .card p.desc { color: var(--muted); font-size: .95rem; margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .chip {
+    font-size: .76rem; padding: 3px 10px; border-radius: 999px;
+    background: var(--bg-soft); border: 1px solid var(--border); color: var(--muted);
+  }
+  .card .highlight { font-size: .88rem; color: var(--muted); border-left: 3px solid var(--accent-2); padding-left: 12px; margin-bottom: 22px; }
+  .card .actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+
+  /* Team */
+  .team { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .member {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+  }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid; place-items: center;
+    font-weight: 700; color: #07101f; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+  .member small { color: var(--muted); display: block; font-size: .8rem; }
+
+  /* Tech */
+  .tech { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tech span { background: var(--card); border: 1px solid var(--border); padding: 8px 14px; border-radius: 10px; font-size: .9rem; }
+
+  footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 28px 0 40px; text-align: center; color: var(--muted); font-size: .9rem; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Portfólio Acadêmico · Ciência da Computação</span>
+    <h1>Simulações Físicas em Python</h1>
+    <p>
+      Projetos interativos desenvolvidos em Física Práticas Extensivas / Mecânica e Física Moderna,
+      que unem modelagem matemática e engenharia de software para visualizar sistemas físicos em tempo real.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+      <a class="btn btn-ghost" href="https://github.com/gustavfreitas/pi_fisica_extensiva" target="_blank" rel="noopener">Repositório no GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="projetos">
+    <h2>Entregas do semestre</h2>
+    <p class="section-sub">Cada card abre a simulação direto no navegador (sem instalar nada, em computador ou celular) e leva ao código-fonte completo.</p>
+
+    <div class="grid">
+
+      <!-- ADO 01 -->
+      <article class="card">
+        <span class="tag">ADO 01</span>
+        <div class="icon" aria-hidden="true">🚀</div>
+        <h3>Lançamento de Projéteis</h3>
+        <p class="desc">Simulação interativa do movimento parabólico de projéteis no caso ideal, sem resistência do ar.</p>
+        <div class="chips">
+          <span class="chip">Cinemática</span>
+          <span class="chip">Decomposição de vetores</span>
+          <span class="chip">Alcance e altura máxima</span>
+        </div>
+        <p class="highlight">Gráfico de trajetória atualizado em tempo real ao alterar velocidade inicial, ângulo e gravidade.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="./ADO_01/web/">▶ Testar Aplicação Online</a>
+          <a class="btn btn-ghost" href="https://github.com/gustavfreitas/pi_fisica_extensiva/tree/HEAD/ADO_01" target="_blank" rel="noopener">&lt;/&gt; Código-fonte</a>
+        </div>
+      </article>
+
+      <!-- ADO 02 -->
+      <article class="card">
+        <span class="tag">ADO 02</span>
+        <div class="icon" aria-hidden="true">🍎</div>
+        <h3>Leis de Newton e Simulação Interativa</h3>
+        <p class="desc">Sistemas clássicos modelados com fórmulas fechadas: plano inclinado, força centrípeta e força de arrasto.</p>
+        <div class="chips">
+          <span class="chip">2ª Lei de Newton</span>
+          <span class="chip">Força de atrito</span>
+          <span class="chip">Movimento circular</span>
+        </div>
+        <p class="highlight">Evolução da posição e da velocidade no tempo com NumPy, sem laços de integração numérica, e seleção de cenários na interface.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="./ADO_02/web/">▶ Testar Aplicação Online</a>
+          <a class="btn btn-ghost" href="https://github.com/gustavfreitas/pi_fisica_extensiva/tree/HEAD/ADO_02" target="_blank" rel="noopener">&lt;/&gt; Código-fonte</a>
+        </div>
+      </article>
+
+      <!-- ADO 03 -->
+      <article class="card">
+        <span class="tag">ADO 03</span>
+        <div class="icon" aria-hidden="true">💥</div>
+        <h3>Colisões e Conservação de Momento</h3>
+        <p class="desc">Animação interativa 1D sobre o Teorema do Impulso, conservação de momento linear e energia cinética.</p>
+        <div class="chips">
+          <span class="chip">Colisões elásticas</span>
+          <span class="chip">Impulso (J)</span>
+          <span class="chip">Força média</span>
+        </div>
+        <p class="highlight">Transferência de energia entre massas visualizada em tempo real, com gráficos de momento e energia antes e depois do choque.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="./ADO_03/web/">▶ Testar Aplicação Online</a>
+          <a class="btn btn-ghost" href="https://github.com/gustavfreitas/pi_fisica_extensiva/tree/HEAD/ADO_03" target="_blank" rel="noopener">&lt;/&gt; Código-fonte</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="tecnologias">
+    <h2>Tecnologias</h2>
+    <p class="section-sub">Ferramentas usadas ao longo das três atividades.</p>
+    <div class="tech">
+      <span>🐍 Python 3</span>
+      <span>🔢 NumPy</span>
+      <span>📈 Matplotlib (widgets)</span>
+      <span>🖼️ Tkinter (versão desktop)</span>
+      <span>🎈 Streamlit + stlite (versão web)</span>
+      <span>📄 ReportLab</span>
+      <span>📓 Jupyter Notebook</span>
+    </div>
+  </section>
+
+  <section id="equipe">
+    <h2>Equipe</h2>
+    <p class="section-sub">Estudantes de Ciência da Computação.</p>
+    <div class="team">
+      <div class="member"><div class="avatar">PC</div><div>Pedro Cristiano Batista Canute</div></div>
+      <div class="member"><div class="avatar">GF</div><div>Gustavo Souza Freitas</div></div>
+      <div class="member"><div class="avatar">MK</div><div>Miguel Hakira Mendes Kato</div></div>
+      <div class="member"><div class="avatar">TA</div><div>Thiago Oliete Ogata Almeida</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Projeto acadêmico sob licença MIT ·
+    <a href="https://github.com/gustavfreitas/pi_fisica_extensiva" target="_blank" rel="noopener">github.com/gustavfreitas/pi_fisica_extensiva</a>
+  </div>
+</footer>
+
+</body>
+</html>
